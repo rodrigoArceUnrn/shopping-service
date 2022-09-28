@@ -1,15 +1,16 @@
 package ar.edu.unrn.shoppingservice.model;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
 @Table(name = "discounts")
-public class Discount extends BaseEntity{
+public class Discount {
 
+    @Id
+    @Column(name = "id", unique = true, nullable = false)
+    private Long id;
     private LocalDateTime StartDate;
     private LocalDateTime endDate;
     private Float amount;
@@ -18,6 +19,14 @@ public class Discount extends BaseEntity{
     private List<Product> productList;
 
     public Discount() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public LocalDateTime getStartDate() {
@@ -42,5 +51,13 @@ public class Discount extends BaseEntity{
 
     public void setAmount(Float amount) {
         this.amount = amount;
+    }
+
+    public List<Product> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
     }
 }
