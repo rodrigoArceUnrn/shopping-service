@@ -1,6 +1,7 @@
 package ar.edu.unrn.shoppingservice.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,6 +16,7 @@ public class ShoppingCart extends BaseEntity {
     private List<Product> productList;
 
     public ShoppingCart() {
+        productList = new ArrayList<>();
     }
 
     public List<Product> getProductList() {

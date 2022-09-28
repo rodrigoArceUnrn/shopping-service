@@ -1,9 +1,6 @@
 package ar.edu.unrn.shoppingservice.model;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -13,13 +10,18 @@ public class Sale extends BaseEntity {
     private Float totalAmount;
     private LocalDateTime datePurchase;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "client_id")
     private Client client;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "shopping_cart_id")
     private ShoppingCart shoppingCart;
+
+    public Sale() {
+        this.client = new Client();
+        this.shoppingCart = new ShoppingCart();
+    }
 
     public ShoppingCart getShoppingCart() {
         return shoppingCart;
@@ -35,9 +37,6 @@ public class Sale extends BaseEntity {
 
     public void setClient(Client client) {
         this.client = client;
-    }
-
-    public Sale() {
     }
 
     public Sale(Long idClient) {
