@@ -16,6 +16,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 public class SaleServiceImpl implements SaleService {
 
@@ -54,13 +56,12 @@ public class SaleServiceImpl implements SaleService {
     }
 
     @Override
+    @Transactional
     public ShoppingCartDTO createNewSale(Long idClient) {
-        Client client = clientRepository.save(new Client(idClient));
-        ShoppingCart shoppingCart = shoppingCartRepository.save(new ShoppingCart());
-        Sale newSale = new Sale();
-        newSale.setClient(client);
-        newSale.setShoppingCart(shoppingCart);
-        Sale sale = saleRepository.save(newSale);
+        Client client = new Client(idClient);
+        Sale sale = new Sale();
+        client.addSale(sale);
+        clientRepository.save(client);
         SaleDTO saleDTO = convertToDTO(sale);
         return saleDTO.getShoppingCart();
     }
@@ -68,7 +69,6 @@ public class SaleServiceImpl implements SaleService {
     @Override
     public ShoppingCartDTO addProductToShoppingCartByClient(Long idClient, ProductDTO productDTO) {
         Sale sale = saleRepository.findSaleByClient_Id(idClient);
-
         Product product = productRepository.save(convertToEntity(productDTO));
         sale.getShoppingCart().getProductList().add(product);
         saleRepository.save(sale);

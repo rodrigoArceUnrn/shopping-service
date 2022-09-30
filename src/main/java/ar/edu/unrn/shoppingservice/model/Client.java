@@ -1,6 +1,7 @@
 package ar.edu.unrn.shoppingservice.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,10 +18,12 @@ public class Client {
     private List<Sale> saleList;
 
     public Client() {
+        saleList = new ArrayList<>();
     }
 
     public Client(Long id) {
         setId(id);
+        this.saleList = new ArrayList<>();
     }
 
     public Long getId() {
@@ -53,5 +56,9 @@ public class Client {
 
     public void setSaleList(List<Sale> saleList) {
         this.saleList = saleList;
+    }
+    public void addSale(Sale sale) {
+        this.saleList.add(sale);
+        sale.setClient(this);
     }
 }
