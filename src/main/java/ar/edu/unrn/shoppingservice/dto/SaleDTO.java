@@ -1,7 +1,5 @@
 package ar.edu.unrn.shoppingservice.dto;
 
-import ar.edu.unrn.shoppingservice.model.ShoppingCart;
-
 import java.time.LocalDateTime;
 
 public class SaleDTO {
@@ -9,9 +7,7 @@ public class SaleDTO {
     private Long id;
     private Float totalAmount;
     private LocalDateTime datePurchase;
-
     private ClientDTO client;
-
     private ShoppingCartDTO shoppingCart;
 
     public SaleDTO() {

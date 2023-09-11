@@ -5,11 +5,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "products")
-public class Product  {
-
-    @Id
-    @Column(name = "id", unique = true, nullable = false)
-    private Long id;
+public class Product  extends BaseEntity{
     private String title;
     private Float amount;
 
@@ -27,14 +23,6 @@ public class Product  {
     private List<Discount> discountList;
 
     public Product() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getTitle() {

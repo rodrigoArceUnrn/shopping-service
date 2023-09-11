@@ -7,7 +7,6 @@ public class ProductDTO {
     private Long id;
     private String title;
     private Float amount;
-
     private List<ShoppingCartDTO> shoppingCartList;
 
     public ProductDTO() {
@@ -44,6 +43,4 @@ public class ProductDTO {
     public void setShoppingCartList(List<ShoppingCartDTO> shoppingCartList) {
         this.shoppingCartList = shoppingCartList;
     }
-
-
 }

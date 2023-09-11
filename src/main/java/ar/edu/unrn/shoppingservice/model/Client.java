@@ -6,11 +6,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "clients")
-public class Client {
-
-    @Id
-    @Column(name = "id", unique = true, nullable = false)
-    private Long id;
+public class Client extends BaseEntity{
     private String name;
     private String email;
 
@@ -24,14 +20,6 @@ public class Client {
     public Client(Long id) {
         setId(id);
         this.saleList = new ArrayList<>();
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {

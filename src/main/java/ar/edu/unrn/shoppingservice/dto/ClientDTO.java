@@ -7,8 +7,6 @@ public class ClientDTO {
     private Long id;
     private String name;
     private String email;
-
-
     private List<SaleDTO> saleList;
 
     public ClientDTO() {

@@ -12,7 +12,6 @@ public class DiscountDTO {
     private LocalDateTime StartDate;
     private LocalDateTime endDate;
     private Float amount;
-
     private List<Product> productList;
 
     public DiscountDTO() {

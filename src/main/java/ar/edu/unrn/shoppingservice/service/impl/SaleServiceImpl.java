@@ -6,7 +6,6 @@ import ar.edu.unrn.shoppingservice.dto.ShoppingCartDTO;
 import ar.edu.unrn.shoppingservice.model.Client;
 import ar.edu.unrn.shoppingservice.model.Product;
 import ar.edu.unrn.shoppingservice.model.Sale;
-import ar.edu.unrn.shoppingservice.model.ShoppingCart;
 import ar.edu.unrn.shoppingservice.repository.ClientRepository;
 import ar.edu.unrn.shoppingservice.repository.ProductRepository;
 import ar.edu.unrn.shoppingservice.repository.SaleRepository;

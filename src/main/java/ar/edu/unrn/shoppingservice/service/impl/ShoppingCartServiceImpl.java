@@ -24,6 +24,4 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     private ShoppingCartDTO convertToDTO(ShoppingCart shoppingCart) {
         return modelMapper.map(shoppingCart, ShoppingCartDTO.class);
     }
-
-
 }

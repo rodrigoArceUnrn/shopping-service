@@ -2,6 +2,7 @@ package ar.edu.unrn.shoppingservice.dto;
 
 import java.util.List;
 
+
 public class ShoppingCartDTO {
 
     private Long id;

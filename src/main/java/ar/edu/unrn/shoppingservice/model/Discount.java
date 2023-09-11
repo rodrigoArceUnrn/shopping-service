@@ -6,11 +6,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "discounts")
-public class Discount {
+public class Discount extends BaseEntity {
 
-    @Id
-    @Column(name = "id", unique = true, nullable = false)
-    private Long id;
     private LocalDateTime StartDate;
     private LocalDateTime endDate;
     private Float amount;
@@ -19,14 +16,6 @@ public class Discount {
     private List<Product> productList;
 
     public Discount() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public LocalDateTime getStartDate() {
