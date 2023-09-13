@@ -6,6 +6,7 @@ import ar.edu.unrn.shoppingservice.service.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -17,6 +18,7 @@ public class SaleController {
     SaleService saleService;
 
     @GetMapping("/{clientId}")
+    @PreAuthorize("hasRole('ROLE_CLIENTE')")
     public ResponseEntity<ShoppingCartDTO> getShoppingCartByIdClient(@PathVariable Long clientId) {
         try {
             if (saleService.existsSaleByClient(clientId))
@@ -29,6 +31,7 @@ public class SaleController {
     }
 
     @PostMapping("/{clientId}/product")
+    @PreAuthorize("hasRole('ROLE_CLIENTE')")
     public ResponseEntity<ShoppingCartDTO> addProductToShoppingCart(@PathVariable Long clientId, @RequestBody ProductDTO productDTO) {
         try {
             return ResponseEntity.ok().body(saleService.addProductToShoppingCartByClient(clientId, productDTO));
