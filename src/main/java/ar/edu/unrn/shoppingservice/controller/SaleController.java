@@ -1,6 +1,7 @@
 package ar.edu.unrn.shoppingservice.controller;
 
 import ar.edu.unrn.shoppingservice.dto.ProductDTO;
+import ar.edu.unrn.shoppingservice.dto.ShoppingCartDTO;
 import ar.edu.unrn.shoppingservice.service.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,19 +17,19 @@ public class SaleController {
     SaleService saleService;
 
     @GetMapping("/{clientId}")
-    public ResponseEntity getShoppingCartByIdClient(@PathVariable Long clientId) {
+    public ResponseEntity<ShoppingCartDTO> getShoppingCartByIdClient(@PathVariable Long clientId) {
         try {
             if (saleService.existsSaleByClient(clientId))
                 return ResponseEntity.ok().body(saleService.findShoppingCartByClient(clientId));
             else
-                return ResponseEntity.ok().body(saleService.createNewSale(clientId));
+                return ResponseEntity.ok().body(saleService.createNewSaleAndFindShoppingCartByClient(clientId));
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
     }
 
     @PostMapping("/{clientId}/product")
-    public ResponseEntity addProductToShoppingCart(@PathVariable Long clientId, @RequestBody ProductDTO productDTO) {
+    public ResponseEntity<ShoppingCartDTO> addProductToShoppingCart(@PathVariable Long clientId, @RequestBody ProductDTO productDTO) {
         try {
             return ResponseEntity.ok().body(saleService.addProductToShoppingCartByClient(clientId, productDTO));
         } catch (Exception e) {

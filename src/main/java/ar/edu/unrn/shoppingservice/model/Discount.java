@@ -1,6 +1,8 @@
 package ar.edu.unrn.shoppingservice.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.List;
 

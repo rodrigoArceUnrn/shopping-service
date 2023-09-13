@@ -56,13 +56,12 @@ public class SaleServiceImpl implements SaleService {
 
     @Override
     @Transactional
-    public ShoppingCartDTO createNewSale(Long idClient) {
+    public ShoppingCartDTO createNewSaleAndFindShoppingCartByClient(Long idClient) {
         Client client = new Client(idClient);
         Sale sale = new Sale();
         client.addSale(sale);
         clientRepository.save(client);
-        SaleDTO saleDTO = convertToDTO(sale);
-        return saleDTO.getShoppingCart();
+        return this.findShoppingCartByClient(idClient);
     }
 
     @Override

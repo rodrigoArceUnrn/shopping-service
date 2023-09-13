@@ -5,11 +5,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "products")
-public class Product  extends BaseEntity{
+public class Product extends BaseEntity {
     private String title;
     private Float amount;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "productList")
     private List<ShoppingCart> shoppingCartList;
 
     @ManyToMany(cascade = {

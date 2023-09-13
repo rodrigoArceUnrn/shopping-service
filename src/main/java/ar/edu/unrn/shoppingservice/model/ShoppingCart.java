@@ -11,7 +11,7 @@ public class ShoppingCart extends BaseEntity {
     @ManyToMany
     @JoinTable(
             name = "shopping_carts_products",
-            joinColumns = @JoinColumn(name = "shopping_cart.id"),
+            joinColumns = @JoinColumn(name = "shopping_cart_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id"))
     private List<Product> productList;
 

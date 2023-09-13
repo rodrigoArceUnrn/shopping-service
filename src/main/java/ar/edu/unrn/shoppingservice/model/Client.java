@@ -1,12 +1,15 @@
 package ar.edu.unrn.shoppingservice.model;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "clients")
-public class Client extends BaseEntity{
+public class Client extends BaseEntity {
     private String name;
     private String email;
 
@@ -45,6 +48,7 @@ public class Client extends BaseEntity{
     public void setSaleList(List<Sale> saleList) {
         this.saleList = saleList;
     }
+
     public void addSale(Sale sale) {
         this.saleList.add(sale);
         sale.setClient(this);

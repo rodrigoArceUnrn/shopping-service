@@ -8,7 +8,7 @@ public interface SaleService {
 
     ShoppingCartDTO findShoppingCartByClient(Long idClient);
 
-    ShoppingCartDTO createNewSale(Long idClient);
+    ShoppingCartDTO createNewSaleAndFindShoppingCartByClient(Long idClient);
 
     ShoppingCartDTO addProductToShoppingCartByClient(Long idClient, ProductDTO productDTO);
 }
