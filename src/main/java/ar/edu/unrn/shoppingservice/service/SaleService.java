@@ -1,6 +1,7 @@
 package ar.edu.unrn.shoppingservice.service;
 
 import ar.edu.unrn.shoppingservice.dto.ProductDTO;
+import ar.edu.unrn.shoppingservice.dto.SaleDTO;
 import ar.edu.unrn.shoppingservice.dto.ShoppingCartDTO;
 
 public interface SaleService {
@@ -10,5 +11,7 @@ public interface SaleService {
 
     ShoppingCartDTO createNewSaleAndFindShoppingCartByClient(Long idClient);
 
-    ShoppingCartDTO addProductToShoppingCartByClient(Long idClient, ProductDTO productDTO);
+    void addProductToShoppingCartByClient(Long idClient, ProductDTO productDTO);
+
+    void buy(SaleDTO saleDTO);
 }

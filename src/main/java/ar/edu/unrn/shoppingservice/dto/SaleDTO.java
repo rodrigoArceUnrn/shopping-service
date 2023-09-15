@@ -11,5 +11,5 @@ public class SaleDTO {
     private Float totalAmount;
     private LocalDateTime datePurchase;
     private ClientDTO client;
-    private ShoppingCartDTO shoppingCart;
+    private Long shoppingCartId;
 }

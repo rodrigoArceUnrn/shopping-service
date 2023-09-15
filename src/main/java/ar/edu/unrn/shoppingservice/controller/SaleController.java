@@ -1,6 +1,7 @@
 package ar.edu.unrn.shoppingservice.controller;
 
 import ar.edu.unrn.shoppingservice.dto.ProductDTO;
+import ar.edu.unrn.shoppingservice.dto.SaleDTO;
 import ar.edu.unrn.shoppingservice.dto.ShoppingCartDTO;
 import ar.edu.unrn.shoppingservice.service.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class SaleController {
             else
                 return ResponseEntity.ok().body(saleService.createNewSaleAndFindShoppingCartByClient(clientId));
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
     }
 
@@ -34,9 +35,21 @@ public class SaleController {
     @PreAuthorize("hasRole('ROLE_CLIENTE')")
     public ResponseEntity<ShoppingCartDTO> addProductToShoppingCart(@PathVariable Long clientId, @RequestBody ProductDTO productDTO) {
         try {
-            return ResponseEntity.ok().body(saleService.addProductToShoppingCartByClient(clientId, productDTO));
+            saleService.addProductToShoppingCartByClient(clientId, productDTO);
+            return ResponseEntity.ok().build();
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        }
+    }
+
+    @PostMapping()
+    @PreAuthorize("hasRole('ROLE_CLIENTE')")
+    public ResponseEntity<Boolean> buy(@RequestBody SaleDTO saleDTO) {
+        try {
+            saleService.buy(saleDTO);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
     }
 

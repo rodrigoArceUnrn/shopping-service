@@ -6,6 +6,7 @@ import ar.edu.unrn.shoppingservice.dto.ShoppingCartDTO;
 import ar.edu.unrn.shoppingservice.model.Client;
 import ar.edu.unrn.shoppingservice.model.Product;
 import ar.edu.unrn.shoppingservice.model.Sale;
+import ar.edu.unrn.shoppingservice.model.ShoppingCart;
 import ar.edu.unrn.shoppingservice.repository.ClientRepository;
 import ar.edu.unrn.shoppingservice.repository.ProductRepository;
 import ar.edu.unrn.shoppingservice.repository.SaleRepository;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Service
 public class SaleServiceImpl implements SaleService {
@@ -35,14 +37,6 @@ public class SaleServiceImpl implements SaleService {
     @Autowired
     private ModelMapper modelMapper;
 
-    private SaleDTO convertToDTO(Sale sale) {
-        return modelMapper.map(sale, SaleDTO.class);
-    }
-
-    private Product convertToEntity(ProductDTO productDTO) {
-        return modelMapper.map(productDTO, Product.class);
-    }
-
     @Override
     public boolean existsSaleByClient(Long idClient) {
         return saleRepository.existsSaleByClient_Id(idClient);
@@ -50,8 +44,8 @@ public class SaleServiceImpl implements SaleService {
 
     @Override
     public ShoppingCartDTO findShoppingCartByClient(Long idClient) {
-        SaleDTO saleDTO = convertToDTO(saleRepository.findSaleByClient_Id(idClient));
-        return saleDTO.getShoppingCart();
+        Sale sale = saleRepository.findSaleByClient_Id(idClient);
+        return convertToShoppingCartDTO(sale.getShoppingCart());
     }
 
     @Override
@@ -65,11 +59,32 @@ public class SaleServiceImpl implements SaleService {
     }
 
     @Override
-    public ShoppingCartDTO addProductToShoppingCartByClient(Long idClient, ProductDTO productDTO) {
+    public void addProductToShoppingCartByClient(Long idClient, ProductDTO productDTO) {
         Sale sale = saleRepository.findSaleByClient_Id(idClient);
-        Product product = productRepository.save(convertToEntity(productDTO));
+        Product product = productRepository.save(convertToEntityProduct(productDTO));
         sale.getShoppingCart().getProductList().add(product);
         saleRepository.save(sale);
-        return convertToDTO(sale).getShoppingCart();
     }
+
+    @Override
+    public void buy(SaleDTO saleDTO) {
+        Sale sale = convertToEntitySale(saleDTO);
+        Optional<ShoppingCart> shoppingCart = shoppingCartRepository.findById(saleDTO.getShoppingCartId());
+        sale.setShoppingCart(shoppingCart.get());
+        sale.setClient(clientRepository.save(sale.getClient()));
+        saleRepository.save(sale);
+    }
+
+    private ShoppingCartDTO convertToShoppingCartDTO(ShoppingCart shoppingCart) {
+        return modelMapper.map(shoppingCart, ShoppingCartDTO.class);
+    }
+
+    private Product convertToEntityProduct(ProductDTO productDTO) {
+        return modelMapper.map(productDTO, Product.class);
+    }
+
+    private Sale convertToEntitySale(SaleDTO saleDTO) {
+        return modelMapper.map(saleDTO, Sale.class);
+    }
+
 }
