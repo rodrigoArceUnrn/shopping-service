@@ -1,8 +1,12 @@
 package ar.edu.unrn.shoppingservice.security;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
+@Setter
+@Getter
 @Configuration
 public class JwtConfig {
 
@@ -16,30 +20,6 @@ public class JwtConfig {
     private String header;
 
     public JwtConfig() {
-    }
-
-    public String getSecretKey() {
-        return secretKey;
-    }
-
-    public void setSecretKey(String secretKey) {
-        this.secretKey = secretKey;
-    }
-
-    public String getTokenPrefix() {
-        return tokenPrefix;
-    }
-
-    public void setTokenPrefix(String tokenPrefix) {
-        this.tokenPrefix = tokenPrefix;
-    }
-
-    public String getHeader() {
-        return header;
-    }
-
-    public void setHeader(String header) {
-        this.header = header;
     }
 
 }

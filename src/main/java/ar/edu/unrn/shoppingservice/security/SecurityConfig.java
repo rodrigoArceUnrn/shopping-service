@@ -25,8 +25,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/shopping-carts/**").hasRole("CLIENTE")
                 .and()
                 .addFilterBefore(new JwtTokenValidationFilter(jwtUtil, jwtConfig), UsernamePasswordAuthenticationFilter.class)
-                .csrf().disable()
-        ;
-
+                .csrf().disable();
     }
 }

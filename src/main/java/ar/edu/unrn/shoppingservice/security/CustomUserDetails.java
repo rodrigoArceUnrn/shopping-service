@@ -32,7 +32,6 @@ public class CustomUserDetails implements UserDetails {
         return authorities;
     }
 
-
     @Override
     public boolean isAccountNonExpired() {
         return false;

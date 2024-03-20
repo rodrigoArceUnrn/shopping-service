@@ -1,8 +1,13 @@
 package ar.edu.unrn.shoppingservice.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
+@Setter
+@Getter
 @MappedSuperclass
 public abstract class BaseEntity implements Serializable {
 
@@ -11,11 +16,4 @@ public abstract class BaseEntity implements Serializable {
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 }

@@ -15,6 +15,7 @@ import org.springframework.web.server.ResponseStatusException;
 @CrossOrigin(origins = {"http://localhost:4200"})
 @RequestMapping(value = "/shopping-carts")
 public class SaleController {
+
     @Autowired
     SaleService saleService;
 
@@ -27,7 +28,7 @@ public class SaleController {
             else
                 return ResponseEntity.ok().body(saleService.createNewSaleAndFindShoppingCartByClient(clientId));
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
         }
     }
 
@@ -38,7 +39,7 @@ public class SaleController {
             saleService.addProductToShoppingCartByClient(clientId, productDTO);
             return ResponseEntity.ok().build();
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
         }
     }
 
@@ -49,8 +50,7 @@ public class SaleController {
             saleService.buy(saleDTO);
             return ResponseEntity.ok().build();
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
         }
     }
-
 }

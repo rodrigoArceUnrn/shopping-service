@@ -20,5 +20,4 @@ public class OpenApiConfig {
                 .description("API para obtener detalles correspondiente a las ventas")
                 .version("1.0.0");
     }
-
 }

@@ -1,5 +1,6 @@
 package ar.edu.unrn.shoppingservice.service.impl;
 
+import ar.edu.unrn.shoppingservice.dto.DetailSaleDTO;
 import ar.edu.unrn.shoppingservice.dto.ProductDTO;
 import ar.edu.unrn.shoppingservice.dto.SaleDTO;
 import ar.edu.unrn.shoppingservice.dto.ShoppingCartDTO;
@@ -7,6 +8,7 @@ import ar.edu.unrn.shoppingservice.model.Client;
 import ar.edu.unrn.shoppingservice.model.Product;
 import ar.edu.unrn.shoppingservice.model.Sale;
 import ar.edu.unrn.shoppingservice.model.ShoppingCart;
+import ar.edu.unrn.shoppingservice.rabbitmq.service.RabbitService;
 import ar.edu.unrn.shoppingservice.repository.ClientRepository;
 import ar.edu.unrn.shoppingservice.repository.ProductRepository;
 import ar.edu.unrn.shoppingservice.repository.SaleRepository;
@@ -36,6 +38,13 @@ public class SaleServiceImpl implements SaleService {
 
     @Autowired
     private ModelMapper modelMapper;
+
+    final RabbitService rabbitService;
+
+    public SaleServiceImpl(RabbitService rabbitService) {
+        this.rabbitService = rabbitService;
+    }
+
 
     @Override
     public boolean existsSaleByClient(Long idClient) {
@@ -72,7 +81,10 @@ public class SaleServiceImpl implements SaleService {
         Optional<ShoppingCart> shoppingCart = shoppingCartRepository.findById(saleDTO.getShoppingCartId());
         sale.setShoppingCart(shoppingCart.get());
         sale.setClient(clientRepository.save(sale.getClient()));
-        saleRepository.save(sale);
+        Sale result = saleRepository.save(sale);
+        DetailSaleDTO detailSale = new DetailSaleDTO(modelMapper.map(result, SaleDTO.class), convertToShoppingCartDTO(shoppingCart.get()).getProductList());
+        rabbitService.sendSaleSuccessfullMessage(detailSale);
+
     }
 
     private ShoppingCartDTO convertToShoppingCartDTO(ShoppingCart shoppingCart) {
