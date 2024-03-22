@@ -1,4 +1,4 @@
-package ar.edu.unrn.shoppingservice.repository;
+package ar.edu.unrn.shoppingservice.data.repository;
 
 import ar.edu.unrn.shoppingservice.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;

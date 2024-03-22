@@ -1,4 +1,4 @@
-package ar.edu.unrn.shoppingservice.security;
+package ar.edu.unrn.shoppingservice.domain.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

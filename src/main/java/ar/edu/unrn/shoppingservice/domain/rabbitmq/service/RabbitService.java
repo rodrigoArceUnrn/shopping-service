@@ -1,7 +1,7 @@
-package ar.edu.unrn.shoppingservice.rabbitmq.service;
+package ar.edu.unrn.shoppingservice.domain.rabbitmq.service;
 
-import ar.edu.unrn.shoppingservice.dto.DetailSaleDTO;
-import ar.edu.unrn.shoppingservice.rabbitmq.Producer;
+import ar.edu.unrn.shoppingservice.controller.dto.DetailSaleDTO;
+import ar.edu.unrn.shoppingservice.domain.rabbitmq.Producer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

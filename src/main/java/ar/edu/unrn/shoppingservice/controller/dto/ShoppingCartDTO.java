@@ -1,4 +1,4 @@
-package ar.edu.unrn.shoppingservice.dto;
+package ar.edu.unrn.shoppingservice.controller.dto;
 
 import lombok.Data;
 

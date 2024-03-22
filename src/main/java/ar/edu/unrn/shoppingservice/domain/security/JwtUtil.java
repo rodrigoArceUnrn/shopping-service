@@ -1,4 +1,4 @@
-package ar.edu.unrn.shoppingservice.security;
+package ar.edu.unrn.shoppingservice.domain.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

@@ -1,4 +1,4 @@
-package ar.edu.unrn.shoppingservice.rabbitmq.config;
+package ar.edu.unrn.shoppingservice.domain.rabbitmq.config;
 
 import org.springframework.amqp.core.Queue;
 import org.springframework.beans.factory.annotation.Value;

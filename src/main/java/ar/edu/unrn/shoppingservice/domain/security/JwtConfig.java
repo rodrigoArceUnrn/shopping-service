@@ -1,4 +1,4 @@
-package ar.edu.unrn.shoppingservice.security;
+package ar.edu.unrn.shoppingservice.domain.security;
 
 import lombok.Getter;
 import lombok.Setter;

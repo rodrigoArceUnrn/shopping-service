@@ -1,4 +1,4 @@
-package ar.edu.unrn.shoppingservice.rabbitmq;
+package ar.edu.unrn.shoppingservice.domain.rabbitmq;
 
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;

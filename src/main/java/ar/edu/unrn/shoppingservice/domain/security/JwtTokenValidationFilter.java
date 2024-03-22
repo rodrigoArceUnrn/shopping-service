@@ -1,4 +1,4 @@
-package ar.edu.unrn.shoppingservice.security;
+package ar.edu.unrn.shoppingservice.domain.security;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;

@@ -1,9 +1,9 @@
 package ar.edu.unrn.shoppingservice.controller;
 
-import ar.edu.unrn.shoppingservice.dto.ProductDTO;
-import ar.edu.unrn.shoppingservice.dto.SaleDTO;
-import ar.edu.unrn.shoppingservice.dto.ShoppingCartDTO;
-import ar.edu.unrn.shoppingservice.service.SaleService;
+import ar.edu.unrn.shoppingservice.controller.dto.ProductDTO;
+import ar.edu.unrn.shoppingservice.controller.dto.SaleDTO;
+import ar.edu.unrn.shoppingservice.controller.dto.ShoppingCartDTO;
+import ar.edu.unrn.shoppingservice.domain.service.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

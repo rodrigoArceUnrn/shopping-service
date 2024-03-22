@@ -1,4 +1,4 @@
-package ar.edu.unrn.shoppingservice.dto;
+package ar.edu.unrn.shoppingservice.controller.dto;
 
 import ar.edu.unrn.shoppingservice.model.Product;
 import lombok.Data;
@@ -13,5 +13,5 @@ public class DiscountDTO {
     private LocalDateTime StartDate;
     private LocalDateTime endDate;
     private Float amount;
-    private List<Product> productList;
+    private List<ProductDTO> productList;
 }
