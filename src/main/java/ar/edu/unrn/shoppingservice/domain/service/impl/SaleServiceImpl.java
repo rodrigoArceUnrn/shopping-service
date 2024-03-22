@@ -52,6 +52,7 @@ public class SaleServiceImpl implements SaleService {
     }
 
     @Override
+    @Transactional
     public ShoppingCartDTO findShoppingCartByClient(Long idClient) {
         Sale sale = saleRepository.findSaleByClient_Id(idClient);
         return convertToShoppingCartDTO(sale.getShoppingCart());
@@ -62,6 +63,7 @@ public class SaleServiceImpl implements SaleService {
     public ShoppingCartDTO createNewSaleAndFindShoppingCartByClient(Long idClient) {
         Client client = new Client(idClient);
         Sale sale = new Sale();
+        sale = saleRepository.save(sale);
         client.addSale(sale);
         clientRepository.save(client);
         return this.findShoppingCartByClient(idClient);
